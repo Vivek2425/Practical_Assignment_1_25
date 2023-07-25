@@ -4,11 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        var ws = new WebSocket('ws://localhost:8080');
+        ws.addEventListener('message',(e)=>{
+            var msg = e.data;
+            document.getElementById('chatlog').innerHTML+='<br> Server : ' + msg;
+        })
+
+        function sendMessage(){
+            var messgae  = document.getElementById('message').value;
+        
+            document.getElementById('chatlog').innerHTML+='<br> Me  : ' + messgae;
+        
+            ws.send(messgae);
+            document.getElementById('message').value = "";
+        }
+    </script>
 </head>
 <body>
-    <form action="/" method="POST">
+    <div id="chatlog">
+
+    </div>
+    <form method="POST">
         <input type="text" id="message" name="message">
-        <input type="button" value="send">
+        <input type="button" value="send" onclick="sendMessage()">
     </form>
 </body>
 </html>
