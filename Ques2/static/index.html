@@ -4,8 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+   
 </head>
 <body>
     <h2>Get list</h2>
+        <button id="getdata">Click here</button>
+    </form>
+    <div id="responseData">
+
+    </div>
+    <script>
+        document.getElementById("getdata").addEventListener("click",async ()=>{
+          const response = await fetch("/getHello");
+            const text = await response.text();
+            document.getElementById("responseData").textContent =text;
+        })
+    </script>
 </body>
 </html>
